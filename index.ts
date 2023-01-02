@@ -7,6 +7,7 @@ import drawAxes from "./modules/draw-axes";
 import square from "./tests/square/coords.json";
 import drawPolygon from "./modules/draw-polygon";
 import loadJSON from "./utils/load-json";
+import applyTransformation from "./modules/apply-transformation";
 
 const width = 500;
 const height = 500;
@@ -46,7 +47,9 @@ context.font = "bold 11px serif";
 drawAxes(context, sceneConfig)
 renderScales(context, sceneConfig)
 
-drawPolygon(context, loadJSON('./tests/square/coords.json'), sceneConfig)
+const polygon = loadJSON('./tests/square/coords.json');
+
+drawPolygon(context, applyTransformation(polygon, "reflection"), sceneConfig)
 
 const buffer = canvas.toBuffer("image/png");
 fs.writeFileSync("./image.png", buffer);
