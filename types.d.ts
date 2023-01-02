@@ -15,3 +15,8 @@ export interface SceneConfig {
     xLength: number;
     yLength: number;
 }
+
+export interface ArgumentMapper {
+    name: string,
+    description: string;
+}
