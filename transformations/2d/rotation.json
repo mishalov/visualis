@@ -4,7 +4,7 @@
     },
     "matrix": [
         [
-            "cos(phi)",
+            "mult(cos(phi), 2)",
             "-sin(phi)"
         ],
         [

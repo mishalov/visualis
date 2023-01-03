@@ -49,6 +49,7 @@ renderScales(context, sceneConfig)
 const polygon = loadJSON('./tests/square/coords.json');
 
 // drawPolygon(context, applyTransformation(polygon, "reflection"), sceneConfig)
+console.log(' applyTransformation(polygon, "reflection"): ', applyTransformation(polygon, "reflection"));
 drawPolygon(context, applyTransformation(polygon, "rotation"), sceneConfig)
 
 const buffer = canvas.toBuffer("image/png");
