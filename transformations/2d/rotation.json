@@ -1,25 +1,15 @@
 {
-    "params": [
-        {
-            "name": "phi",
-            "description": "Angle to rotate"
-        }
-    ],
+    "params": {
+        "phi": 45
+    },
     "matrix": [
         [
             "cos(phi)",
-            "-sin(phi)",
-            0
+            "-sin(phi)"
         ],
         [
             "sin(phi)",
-            "cos(phi)",
-            0
-        ],
-        [
-            0,
-            0,
-            -1
+            "cos(phi)"
         ]
     ]
 }

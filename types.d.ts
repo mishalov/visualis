@@ -20,3 +20,8 @@ export interface ArgumentMapper {
     name: string,
     description: string;
 }
+
+export interface TransformationInput {
+    params: Record<string, number>
+    matrix: number[][]
+}

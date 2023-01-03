@@ -4,7 +4,6 @@ import calculateSingleStepPixels from "./modules/atomic/calculate-step-pixels";
 import renderScales from "./modules/render-scales";
 import drawAxes from "./modules/draw-axes";
 
-import square from "./tests/square/coords.json";
 import drawPolygon from "./modules/draw-polygon";
 import loadJSON from "./utils/load-json";
 import applyTransformation from "./modules/apply-transformation";
@@ -49,7 +48,8 @@ renderScales(context, sceneConfig)
 
 const polygon = loadJSON('./tests/square/coords.json');
 
-drawPolygon(context, applyTransformation(polygon, "reflection"), sceneConfig)
+// drawPolygon(context, applyTransformation(polygon, "reflection"), sceneConfig)
+drawPolygon(context, applyTransformation(polygon, "rotation"), sceneConfig)
 
 const buffer = canvas.toBuffer("image/png");
 fs.writeFileSync("./image.png", buffer);
