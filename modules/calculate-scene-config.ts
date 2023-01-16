@@ -1,18 +1,43 @@
 import { max, min } from "ramda";
-import { SceneConfig } from "types";
+import { SceneConfig } from "../types";
+import calculateSingleStepPixels from "./atomic/calculate-step-pixels";
 
 const calculateEdgesOfScene = (polygon: number[][]) => {
-    const maxX = polygon.reduce((prev, row) => max(prev, row[0]), 0);
-    const maxY = polygon.reduce((prev, row) => max(prev, row[1]), 0);
+    const absoluteMaxX = polygon.reduce((prev, row) => max(prev, row[0]), 0) + 1;
+    const absoluteMaxY = polygon.reduce((prev, row) => max(prev, row[1]), 0) + 1;
 
-    const minX = polygon.reduce((prev, row) => min(prev, row[0]), 0);
-    const minY = polygon.reduce((prev, row) => min(prev, row[1]), 0);
+    const absoluteMinX = polygon.reduce((prev, row) => min(prev, row[0]), 0) - 1;
+    const absoluteMinY = polygon.reduce((prev, row) => min(prev, row[1]), 0) - 1;
 
     return {
-        maxX, maxY, minX, minY
+        absoluteMaxX, absoluteMaxY, absoluteMinX, absoluteMinY
     }
 }
 
 const calculateSceneConfig = (polygon: number[][]): SceneConfig => {
-    const newEdges = calculateEdgesOfScene(polygon);
+    const { absoluteMaxX, absoluteMinX, absoluteMaxY, absoluteMinY } = calculateEdgesOfScene(polygon);
+
+    const width = 500;
+    const height = 500;
+
+    const stepX = calculateSingleStepPixels(absoluteMaxX, absoluteMinX, width)
+    const stepY = calculateSingleStepPixels(absoluteMaxY, absoluteMinY, height)
+
+    const xLength = absoluteMaxX - absoluteMinX;
+    const yLength = absoluteMaxY - absoluteMinY;
+
+    return {
+        width,
+        height,
+        stepX,
+        stepY,
+        absoluteMinX,
+        absoluteMinY,
+        absoluteMaxX,
+        absoluteMaxY,
+        xLength,
+        yLength
+    }
 }
+
+export default calculateSceneConfig;

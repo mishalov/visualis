@@ -1,10 +1,10 @@
 {
     "params": {
-        "phi": 45
+        "phi": 0.785398
     },
     "matrix": [
         [
-            "mult(cos(phi), 2)",
+            "cos(phi)",
             "-sin(phi)"
         ],
         [

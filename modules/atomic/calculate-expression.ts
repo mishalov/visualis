@@ -13,7 +13,6 @@ type AvailableUnaryFuncs = keyof typeof unaryFuncs
 const calculateExpression = (expression: string | number, params: Record<string, number>): number => {
     const exprToNumber = +expression;
     if (!Number.isNaN(+expression)) return exprToNumber;
-    // Return radians. Program takes Degrees
     if (params[expression]) return params[expression];
 
     // Typecasting

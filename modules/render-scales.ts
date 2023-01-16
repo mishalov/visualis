@@ -23,13 +23,18 @@ const renderScaleStrokeVertical = (ctx: CanvasRenderingContext2D, x: number, y: 
 }
 
 const renderScales = (ctx: CanvasRenderingContext2D, sceneConfig: SceneConfig) => {
-    for (let index = sceneConfig.absoluteMinX; index <= sceneConfig.absoluteMaxX; index++) {
+    const { absoluteMinX, absoluteMaxX, absoluteMaxY, absoluteMinY } = sceneConfig;
+    const beginX = absoluteMinX < 0 ? Math.floor(absoluteMinX) : Math.ceil(absoluteMinX);
+    const beginY = absoluteMaxY < 0 ? Math.floor(absoluteMaxY) : Math.ceil(absoluteMaxY);
+
+
+    for (let index = beginX; index <= absoluteMaxX; index++) {
         const { x, y } = getPixelsCoord(index, 0, sceneConfig);
         renderSingleScale(ctx, x, y, index.toString());
         renderScaleStrokeHorizontal(ctx, x, y);
     }
 
-    for (let index = sceneConfig.absoluteMaxY; index >= sceneConfig.absoluteMinY; index--) {
+    for (let index = beginY; index >= absoluteMinY; index--) {
         const { x, y } = getPixelsCoord(0, index, sceneConfig);
         renderSingleScale(ctx, x, y, index.toString());
         renderScaleStrokeVertical(ctx, x, y);
